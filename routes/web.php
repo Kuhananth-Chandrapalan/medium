@@ -4,6 +4,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FollowerController;
 
 
 Route::get('/', function () {
@@ -17,6 +18,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [\App\Http\Controllers\PostController::class, 'index'])->name('dashboard');
     Route::get('/post/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
     Route::post('/post/create', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
+
+    Route::post('/follow/{user}', [\App\Http\Controllers\FollowerController::class, 'followUnfollow'])->name('follow');
 
 
 });
