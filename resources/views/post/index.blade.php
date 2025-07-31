@@ -1,0 +1,21 @@
+<x-app-layout>
+    <div class="py-4">
+        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                   <x-category-tabs name="Kuha"/>
+                </div>
+            </div>
+            <div class="mt-8 text-gray-900">
+                @forelse ($posts as $post)
+                    <x-post-item :post="$post"></x-post-item>
+                @empty
+                    <div class="text-center text-gray-400 py-16">No Posts Found </div>
+                @endforelse
+            </div>
+            <div class="mt-6 justify-center">
+                {{ $posts->links() }}
+            </div>
+        </div>
+    </div>
+</x-app-layout>
