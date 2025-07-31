@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'kuha',
             'username' => 'kuhaTest',
-            'email' => 'kuhatest@gmail.com'
+            'email' => 'kuhaprac1@gmail.com'
         ]);
         $categories = [
             'Technology',

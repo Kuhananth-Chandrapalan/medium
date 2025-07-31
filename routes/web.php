@@ -11,12 +11,13 @@ Route::get('/', function () {
 });
 
 Route::get('/@{user:username}', [\App\Http\Controllers\PublicProfileController::class, 'show'])->name('profile.show');
+Route::get('/@{username}/{post:slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('post.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [\App\Http\Controllers\PostController::class, 'index'])->name('dashboard');
     Route::get('/post/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
     Route::post('/post/create', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
-    Route::get('/@{username}/{post:slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('post.show');
+
 
 });
 
