@@ -14,7 +14,7 @@ class Post extends Model implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
     protected $fillable = [
-        'image',
+        //'image',
         'title',
         'slug',
         'content',
@@ -27,8 +27,13 @@ class Post extends Model implements HasMedia
     {
         $this
             ->addMediaConversion('preview')
-            ->width(400)
-            ->nonQueued();
+            ->width(400);
+
+        $this
+            ->addMediaConversion('large')
+            ->width(1200);
+
+
     }
 
 
@@ -58,14 +63,11 @@ class Post extends Model implements HasMedia
         return max(1, $minutes);
     }
 
-    public function imageUrl()
+    public function imageUrl($conversionName = '')
     {
-        if ($this->image){
-            return Storage::url($this->image);
-
-        }
-        return null;
-
+        $media = $this->getFirstMedia();
+        return $media ? $media->getUrl($conversionName ? 'conversionName' : '') : null;
     }
+
 
 }
