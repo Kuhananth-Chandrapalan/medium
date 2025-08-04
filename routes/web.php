@@ -14,13 +14,14 @@ Route::get('/', function () {
 Route::get('/@{user:username}', [\App\Http\Controllers\PublicProfileController::class, 'show'])->name('profile.show');
 Route::get('/@{username}/{post:slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('post.show');
 Route::get('/', [PostController::class, 'index'])->name('dashboard');
+Route::get('/category/{category}', [\App\Http\Controllers\PostController::class, 'category'])->name('post.byCategory');
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
 
 
 
-    Route::get('/category/{category}', [\App\Http\Controllers\PostController::class, 'category'])->name('post.byCategory');
     Route::get('/post/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
     Route::post('/post/create', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
 
